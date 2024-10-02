@@ -60,20 +60,20 @@ function PlayRound(humanSelection) {
     }
     scoreboard.textContent = `Human ${humanscore} - Bot ${computerscore}`
     ++rounds;
-    if (rounds > maxrounds) {
-        endgame();
+    if (rounds >= maxrounds) {
+        setTimeout(endgame, 500);
     }
 }
 
 function endgame() {
     if (humanscore > computerscore) {
-        alert('YOU WIN')
+        alert('YOU WIN ' + scoreboard.textContent)
     }
     else if ( humanscore < computerscore) {
-        alert('YOU LOSE')
+        alert('YOU LOSE ' + scoreboard.textContent)
     }
     else {
-        alert('IT IS A DRAW')
+        alert('IT IS A DRAW ' + scoreboard.textContent)
     }
     humanscore = 0;
     computerscore = 0

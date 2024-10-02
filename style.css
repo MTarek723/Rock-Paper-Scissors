@@ -1,16 +1,16 @@
 .container {
     display: flex;
     flex-direction: column;
-    gap: 100px;
+    gap: 50px;
 }
 .scoreboard {
     border: solid 2px black;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 32px;
+    font-size: 72px;
     width: 500px;
-    padding: 10px;
+    padding: 40px;
     margin: auto;
 }
 .choices {
