@@ -6,19 +6,18 @@ function getcomputerchoice() {
 
 function gethumanchoice() {
     let choices = ['Rock', 'Paper', 'Scissor'];
-    let x = 1;
-    let choice;
-    while(x) {
-        choice = prompt('choose between 0-Rock, 1-Paper, 2-Scissor')
-        if (choice >= 0 && choice < choices.length) {
-            x = 0;
-        }
-    }
-    return choices[choice]
+    let btns = document.querySelectorAll('button')
+    btns.forEach((btn) => {
+        btn.addEventListener('click', ()=> {
+            let choice = choices[btn.id]
+            PlayRound(choice)
+        })
+    })
+    
 }
 
-function PlayRound() {
-    const humanSelection = gethumanchoice()
+function PlayRound(humanSelection) {
+    
     const computerSelection = getcomputerchoice()
     if (humanSelection == 'Rock') {
         if (computerSelection == 'Paper') {
@@ -59,13 +58,14 @@ function PlayRound() {
             alert('draw!')
         }
     }
+    scoreboard.textContent = `Human ${humanscore} - Bot ${computerscore}`
+    ++rounds;
+    if (rounds > maxrounds) {
+        endgame();
+    }
 }
 
-function PlayGame() {
-    for(let i = 0; i < 5; ++i) {
-        PlayRound()
-        console.log(`human ${humanscore} - computer ${computerscore}`)
-    }
+function endgame() {
     if (humanscore > computerscore) {
         alert('YOU WIN')
     }
@@ -75,9 +75,18 @@ function PlayGame() {
     else {
         alert('IT IS A DRAW')
     }
+    humanscore = 0;
+    computerscore = 0
+    rounds = 0
+    scoreboard.textContent = `Human ${humanscore} - Bot ${computerscore}`
 }
 
 
 let humanscore = 0;
 let computerscore = 0;
+let rounds = 0;
+let maxrounds = 5;
 
+let scoreboard = document.querySelector('.scoreboard')
+scoreboard.textContent = `Human ${humanscore} - Bot ${computerscore}`
+gethumanchoice()
